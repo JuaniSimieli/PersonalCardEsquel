@@ -36,7 +36,7 @@ struct ContentView: View {
                 }
             }
             if isShowingQR {
-                socialQRShow
+                socialQRShow //Cambiar esto por una animacion como la gente
             }
         }
         .sheet(isPresented: $isShowingSheet) {

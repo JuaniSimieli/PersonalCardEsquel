@@ -16,9 +16,9 @@ class UserData {
     var phone2 = "+5492945451927"
     var url = "www.esquel.tur.ar"
     var address = "Sarmiento y Avenida Alvear, 9200 Esquel, Chubut, Argentina"
-    var instragram: String?
-    var facebook: String?
-    var twitter: String?
+    var instragram: String
+    var facebook: String
+    var twitter: String
     
     
     var fullName: String {
@@ -31,9 +31,9 @@ class UserData {
         self.position = position
         self.email = email
         self.phone1 = phone1
-        self.instragram = instragram
-        self.facebook = facebook
-        self.twitter = twitter
+        self.instragram = instragram ?? "TurismoEsquel"
+        self.facebook = facebook ?? "TurismoEsquel"
+        self.twitter = twitter ?? "TurismoEsquel"
     }
     
     static let defaultUser = UserData(firstName: "Juan", lastName: "Perez", position: "Secretario", email: "juanperez@esquel.gov.ar", phone1: "2945000000", instragram: "TurismoEsquel", facebook: "TurismoEsquel", twitter: "TurismoEsquel")
