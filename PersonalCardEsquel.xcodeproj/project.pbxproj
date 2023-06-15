@@ -15,6 +15,10 @@
 		6B18BDC02A366A9200B7E272 /* EditDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18BDBF2A366A9200B7E272 /* EditDataView.swift */; };
 		6BB4A52C2A38FB9C008943C3 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4A52B2A38FB9C008943C3 /* UserData.swift */; };
 		6BCB57DE2A3ADBDE007530E2 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB57DD2A3ADBDE007530E2 /* ImagePicker.swift */; };
+		6BCB57E02A3B6105007530E2 /* Montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB57DF2A3B6105007530E2 /* Montserrat.ttf */; };
+		6BCB57E32A3B6365007530E2 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB57E22A3B6364007530E2 /* Montserrat-Bold.ttf */; };
+		6BCB57E52A3B6371007530E2 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB57E42A3B6370007530E2 /* Montserrat-SemiBold.ttf */; };
+		6BCB57E72A3B69B6007530E2 /* JosefinSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB57E62A3B69B5007530E2 /* JosefinSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,11 @@
 		6B18BDBF2A366A9200B7E272 /* EditDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataView.swift; sourceTree = "<group>"; };
 		6BB4A52B2A38FB9C008943C3 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		6BCB57DD2A3ADBDE007530E2 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		6BCB57DF2A3B6105007530E2 /* Montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Montserrat.ttf; sourceTree = "<group>"; };
+		6BCB57E12A3B6129007530E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6BCB57E22A3B6364007530E2 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		6BCB57E42A3B6370007530E2 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		6BCB57E62A3B69B5007530E2 /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +68,17 @@
 		6B18BDA62A3521A700B7E272 /* PersonalCardEsquel */ = {
 			isa = PBXGroup;
 			children = (
+				6BCB57E12A3B6129007530E2 /* Info.plist */,
 				6B18BDA72A3521A700B7E272 /* PersonalCardEsquelApp.swift */,
 				6B18BDA92A3521A700B7E272 /* ContentView.swift */,
 				6B18BDB92A35484300B7E272 /* QRCodeView.swift */,
 				6BB4A52B2A38FB9C008943C3 /* UserData.swift */,
 				6B18BDBF2A366A9200B7E272 /* EditDataView.swift */,
 				6BCB57DD2A3ADBDE007530E2 /* ImagePicker.swift */,
+				6BCB57DF2A3B6105007530E2 /* Montserrat.ttf */,
+				6BCB57E22A3B6364007530E2 /* Montserrat-Bold.ttf */,
+				6BCB57E42A3B6370007530E2 /* Montserrat-SemiBold.ttf */,
+				6BCB57E62A3B69B5007530E2 /* JosefinSans-Bold.ttf */,
 				6B18BDAB2A3521A900B7E272 /* Assets.xcassets */,
 				6B18BDAD2A3521A900B7E272 /* Preview Content */,
 			);
@@ -138,8 +152,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BCB57E32A3B6365007530E2 /* Montserrat-Bold.ttf in Resources */,
 				6B18BDAF2A3521A900B7E272 /* Preview Assets.xcassets in Resources */,
 				6B18BDAC2A3521A900B7E272 /* Assets.xcassets in Resources */,
+				6BCB57E02A3B6105007530E2 /* Montserrat.ttf in Resources */,
+				6BCB57E52A3B6371007530E2 /* Montserrat-SemiBold.ttf in Resources */,
+				6BCB57E72A3B69B6007530E2 /* JosefinSans-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +305,7 @@
 				DEVELOPMENT_TEAM = VZPTBF3NV4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PersonalCardEsquel/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -319,6 +338,7 @@
 				DEVELOPMENT_TEAM = VZPTBF3NV4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PersonalCardEsquel/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

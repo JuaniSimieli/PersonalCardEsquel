@@ -46,7 +46,7 @@ struct ContactQRCodeView: View {
         Image(uiImage: QRCodeGenerator.generateQR(from: contactVCard()))
             .interpolation(.none)
             .resizable()
-            .frame(width: 300, height: 300)
+            .frame(width: 270, height: 270)
     }
     
     func contactVCard() -> String {

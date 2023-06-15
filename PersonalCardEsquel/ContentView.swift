@@ -75,8 +75,11 @@ struct ContentView: View {
     var appStrings: some View {
         VStack {
             Text(userData.fullName)
+                .font(.custom("Montserrat-Bold", size: 22))
             Text(userData.position)
+                .font(.custom("Montserrat", size: 18))
             Text(userData.email)
+                .font(.custom("Montserrat", size: 16))
         }
         .padding()
         .foregroundColor(Color("appPink"))
@@ -90,9 +93,23 @@ struct ContentView: View {
                 ContactQRCodeView(firstName: userData.firstName, lastName: userData.lastName, phone: userData.phone1, email: userData.email)
                     .padding()
                 ZStack {
-                    Text("Descargá mi contacto en tu celular")
-                        .padding(.bottom)
+                    VStack {
+                        HStack (spacing: 5) {
+                            Text("Descargá mi")
+                                .font(.custom("Montserrat", size: 18))
+                            Text("contacto")
+                                .font(.custom("Montserrat-Bold", size: 18))
+                        }
+                        HStack (spacing: 5) {
+                            Text("en")
+                                .font(.custom("Montserrat", size: 18))
+                            Text("tu celular")
+                                .font(.custom("Montserrat-Bold", size: 18))
+                        }
+                    }
+                    .padding(.bottom)
                     .foregroundColor(.white)
+                    
                     HStack {
                         Spacer()
                         Image("flecha")
@@ -119,6 +136,7 @@ struct ContentView: View {
             Text("Compartir redes Sociales")
                 .padding()
                 .foregroundColor(Color("appPink"))
+                .font(.custom("Montserrat-SemiBold", size: 18))
             
             HStack (spacing: 30) {
                 Image("instagram.icon") // Instagram
@@ -213,20 +231,21 @@ struct ContentView: View {
             
             VStack {
                 Text("ESQUEL")
-                    .font(.largeTitle)
+                    .font(.custom("JosefinSans-Bold", size: 50))
+                    .padding(.top)
                 Text("SECRETARÍA DE TURISMO DE ESQUEL")
-                    .font(.caption)
+                    .font(.custom("Montserrat-SemiBold", size: 12))
                 Text("Telefonos: +54 2945 45-1927/45-5652")
-                    .font(.caption)
+                    .font(.custom("Montserrat", size: 12))
                 Text("Av. Alvear esq. Sarmiento, (9200)")
-                    .font(.caption)
+                    .font(.custom("Montserrat", size: 12))
                 Text("Esquel, Chubut, Argentina")
-                    .font(.caption)
+                    .font(.custom("Montserrat", size: 12))
             }
             .padding()
             .foregroundColor(.white)
         }
-    } //Modificar fuentes
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
