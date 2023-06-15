@@ -101,7 +101,7 @@ struct ContentView: View {
                 .foregroundColor(Color("appPink"))
             
             HStack (spacing: 30) {
-                Image("recurso4") // Instagram
+                Image("instagram.icon") // Instagram
                     .resizable()
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
@@ -110,8 +110,8 @@ struct ContentView: View {
                         isShowingQR.toggle()
                     }
                 
-                Image("recurso4")
-                    .resizable() // Twitter
+                Image("twitter.icon") // Twitter
+                    .resizable()
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
                     .onTapGesture {
@@ -119,8 +119,8 @@ struct ContentView: View {
                         isShowingQR.toggle()
                     }
                 
-                Image("recurso4")
-                    .resizable() // Facebook
+                Image("facebook.icon") // Facebook
+                    .resizable()
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
                     .onTapGesture {
