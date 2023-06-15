@@ -14,6 +14,8 @@ struct ContentView: View {
     @State private var isShowingSheet = false
     @StateObject var userData = UserData.defaultUser
     @State private var selectedSocialMediatoShow: SocialMediaType = .twitter
+    @State private var iconScale = 1.0
+    @State private var rotationAngle = 0.0
     
     var body: some View {
         ZStack {
@@ -86,13 +88,31 @@ struct ContentView: View {
             VStack {
                 ContactQRCodeView(firstName: userData.firstName, lastName: userData.lastName, phone: userData.phone1, email: userData.email)
                     .padding()
-                Text("Descargá mi contacto en tu celular")
-                    .padding()
+                ZStack {
+                    Text("Descargá mi contacto en tu celular")
+                        .padding(.bottom)
                     .foregroundColor(.white)
+                    HStack {
+                        Spacer()
+                        Image("flecha")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 70)
+                            .offset(x: -10, y: -30)
+                            .padding(.bottom, -15)
+                            .padding(.top, -20)
+                            .rotationEffect(Angle(degrees: rotationAngle), anchor: .bottomLeading)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true)) {
+                                    rotationAngle = 8.0
+                                }
+                            }
+                    }
+                }
             }
         }
         .padding()
-    }
+    } //Agregar flecha
     
     var socialMedia: some View {
         Group {
@@ -109,6 +129,7 @@ struct ContentView: View {
                         selectedSocialMediatoShow = .instagram
                         isShowingQR.toggle()
                     }
+                    .scaleEffect(iconScale)
                 
                 Image("twitter.icon") // Twitter
                     .resizable()
@@ -118,6 +139,7 @@ struct ContentView: View {
                         selectedSocialMediatoShow = .twitter
                         isShowingQR.toggle()
                     }
+                    .scaleEffect(iconScale)
                 
                 Image("facebook.icon") // Facebook
                     .resizable()
@@ -127,10 +149,16 @@ struct ContentView: View {
                         selectedSocialMediatoShow = .facebook
                         isShowingQR.toggle()
                     }
+                    .scaleEffect(iconScale)
             }
             .padding(.bottom)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 0.75).repeatForever()) {
+                    iconScale = 1.1
+                }
+            }
         }
-    } //Cambiar iconos y animarlos
+    }
     
     var socialQRShow: some View {
         ZStack {

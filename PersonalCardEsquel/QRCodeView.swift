@@ -18,7 +18,7 @@ struct SocialQRCodeView: View {
     
     var body: some View {
         Image(uiImage: socialQR())
-            .interpolation(.none)
+//            .interpolation(.none)
             .resizable()
             .frame(width: 300, height: 300)
     }
