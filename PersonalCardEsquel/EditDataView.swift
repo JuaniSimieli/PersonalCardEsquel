@@ -15,6 +15,34 @@ struct EditDataView: View {
     var body: some View {
         NavigationView {
             Form {
+                HStack {
+                    Spacer()
+                    ZStack {
+                        Image("galeria002")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120, height: 120)
+                        Group {
+                            Rectangle()
+                                .foregroundColor(.black)
+                                .frame(width: 100, height: 100)
+                                .offset(y:80)
+                            Text("EDITAR")
+                                .offset(y:42)
+                                .font(.caption)
+                                .foregroundColor(.white)
+                        }
+                        .onTapGesture {
+                            // Edit profile pic
+                        }
+                    }
+                    .clipShape(Circle())
+                    Spacer()
+                }
+                .padding(.top , -10)
+                .padding(.bottom, -10)
+                .listRowBackground(Color.clear)
+                
                 Section {
                     HStack {
                         Text("Nombre")
