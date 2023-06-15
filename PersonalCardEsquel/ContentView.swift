@@ -83,8 +83,12 @@ struct ContentView: View {
                 .font(.custom("Montserrat-SemiBold", size: 24))
             Text(userData.position)
                 .font(.custom("Montserrat", size: 18))
-            Text(userData.email)
+            Text(userData.email1)
                 .font(.custom("Montserrat-SemiBold", size: 16))
+            if userData.email2.isEmpty == false {
+                Text(userData.email2)
+                    .font(.custom("Montserrat-SemiBold", size: 16))
+            }
         }
         .padding()
         .foregroundColor(Color("appPink"))
@@ -95,7 +99,7 @@ struct ContentView: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color("appPink"))
             VStack {
-                ContactQRCodeView(firstName: userData.firstName, lastName: userData.lastName, phone: userData.phone1, email: userData.email)
+                ContactQRCodeView(firstName: userData.firstName, lastName: userData.lastName, phone: userData.phone1, email1: userData.email1, email2: userData.email2)
                     .padding()
                 ZStack {
                     VStack {

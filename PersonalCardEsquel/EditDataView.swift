@@ -62,21 +62,36 @@ struct EditDataView: View {
                             .multilineTextAlignment(.trailing)
                     }
                     HStack {
-                        Text("Puesto")
-                        TextField("Puesto", text: $userData.position)
+                        Text("Cargo")
+                        TextField("Cargo", text: $userData.position)
                             .foregroundColor(isEditingDisabled ? .gray : .blue)
                             .multilineTextAlignment(.trailing)
                     }
                     HStack {
-                        Text("Email")
-                        TextField("Email", text: $userData.email)
+                        Text("Email \nPrincipal")
+                        TextField("Email principal", text: $userData.email1)
                             .keyboardType(.emailAddress)
                             .foregroundColor(isEditingDisabled ? .gray : .blue)
                             .multilineTextAlignment(.trailing)
                     }
                     HStack {
-                        Text("Teléfono Personal")
+                        Text("Email \nAlternativo")
+                        TextField("Opcional", text: $userData.email2)
+                            .keyboardType(.emailAddress)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Teléfono \nPrincipal")
                         TextField("Teléfono Personal", text: $userData.phone1)
+                            .focused($isFocusedField)
+                            .keyboardType(.phonePad)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Teléfono Secundario")
+                        TextField("Teléfono Secundario", text: $userData.phone2)
                             .focused($isFocusedField)
                             .keyboardType(.phonePad)
                             .foregroundColor(isEditingDisabled ? .gray : .blue)
@@ -85,7 +100,7 @@ struct EditDataView: View {
                 } header: {
                     Text("Datos Personales")
                 } footer: {
-                    Text("Estos datos van a ser utilizados para mostrar en la pantalla principal y para actualizar el código QR para compartir tu contacto")
+                    Text("Estos datos van a ser utilizados para mostrar en la pantalla principal y para actualizar el código QR para compartir tu contacto. \nEl email alternativo es opcional \nEn el teléfono secundario se muestra por defecto el número de la secretaría.")
                 }
                 .disabled(isEditingDisabled)
                 

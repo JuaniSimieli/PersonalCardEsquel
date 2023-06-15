@@ -55,19 +55,21 @@ struct ContactQRCodeView: View {
             VERSION:4.0
             N:\(userData.lastName);\(userData.firstName)
             FN:\(userData.firstName) \(userData.lastName)
+            ORG:Turismo Esquel
             TEL;TYPE=CELL:\(userData.phone1)
             TEL;TYPE=WORK:\(userData.phone2)
-            EMAIL:\(userData.email)
-            URL:\(userData.url)
-            ADR:\(userData.address)
+            EMAIL:\(userData.email1)
+            \(userData.email2.isEmpty ? "" : "EMAIL:\(userData.email2)")
+            URL:https://www.esquel.tur.ar/
+            ADR:;;Avenida Alvear y Sarmiento;Esquel;Chubut;9200;Argentina
             END:VCARD
             """
 
             return contactCard
         }
     
-    init(firstName: String, lastName: String, phone: String, email: String) {
-        let newUser = UserData(firstName: firstName, lastName: lastName, position: "", email: email, phone1: phone)
+    init(firstName: String, lastName: String, phone: String, email1: String, email2: String) {
+        let newUser = UserData(firstName: firstName, lastName: lastName, position: "", email1: email1, email2: email2, phone1: phone)
         self.userData = newUser
     }
 }
