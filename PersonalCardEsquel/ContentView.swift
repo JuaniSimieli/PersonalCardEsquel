@@ -102,17 +102,16 @@ struct ContentView: View {
                             .padding(.bottom, -15)
                             .padding(.top, -20)
                             .rotationEffect(Angle(degrees: rotationAngle), anchor: .bottomLeading)
-                            .onAppear {
-                                withAnimation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true)) {
-                                    rotationAngle = 8.0
-                                }
-                            }
+                            .animation(.easeInOut(duration: 1.0).repeatForever(), value: rotationAngle)
                     }
                 }
             }
         }
         .padding()
-    } //Agregar flecha
+        .onAppear {
+            rotationAngle = 8.0
+        }
+    }
     
     var socialMedia: some View {
         Group {
