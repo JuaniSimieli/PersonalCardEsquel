@@ -11,6 +11,8 @@ struct EditDataView: View {
     @FocusState private var isFocusedField: Bool
     @ObservedObject var userData: UserData
     @State private var isEditingDisabled = true
+    @State private var profilePhoto: UIImage?
+    @State private var showImagePicker = false
     
     var body: some View {
         NavigationView {
@@ -18,10 +20,17 @@ struct EditDataView: View {
                 HStack {
                     Spacer()
                     ZStack {
-                        Image("galeria002")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 120, height: 120)
+                        if let profilePhoto = profilePhoto {
+                            Image(uiImage: profilePhoto)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 120)
+                        } else {
+                            Image("galeria002")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 120)
+                        }
                         Group {
                             Rectangle()
                                 .foregroundColor(.black)
@@ -33,7 +42,7 @@ struct EditDataView: View {
                                 .foregroundColor(.white)
                         }
                         .onTapGesture {
-                            // Edit profile pic
+                            showImagePicker = true
                         }
                     }
                     .clipShape(Circle())
@@ -129,11 +138,15 @@ struct EditDataView: View {
             .toolbar {
                 Button(isEditingDisabled ? "Editar" : "Aceptar") {
                     isEditingDisabled.toggle()
+                    //Validar que los inputs no esten vacios al "Aceptar"
                 }
             }
             .onTapGesture {
                 isFocusedField = false
             }
+            .sheet(isPresented: $showImagePicker) {
+                        ImagePicker(image: $profilePhoto)
+                    }
         }
     }
     

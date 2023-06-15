@@ -34,6 +34,7 @@ struct ContentView: View {
                                 .onTapGesture {
                                     isShowingSheet.toggle()
                                 }
+                                .padding(.top)
                         }
                     }
                 }
