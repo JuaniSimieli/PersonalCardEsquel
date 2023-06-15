@@ -12,7 +12,8 @@ import CoreImage.CIFilterBuiltins
 struct ContentView: View {
     @State private var isShowingQR = false
     @State private var isShowingSheet = false
-    var userData = UserData.defaultUser
+    @StateObject var userData = UserData.defaultUser
+    @State private var selectedSocialMediatoShow: SocialMediaType = .twitter
     
     var body: some View {
         ZStack {
@@ -40,7 +41,7 @@ struct ContentView: View {
             }
         }
         .sheet(isPresented: $isShowingSheet) {
-            EditDataView()
+            EditDataView(userData)
                 .interactiveDismissDisabled()
         }
     }
@@ -84,7 +85,7 @@ struct ContentView: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color("appPink"))
             VStack {
-                ContactQRCodeView(userData: userData)
+                ContactQRCodeView(firstName: userData.firstName, lastName: userData.lastName, phone: userData.phone1, email: userData.email)
                     .padding()
                 Text("Descargá mi contacto en tu celular")
                     .padding()
@@ -101,31 +102,36 @@ struct ContentView: View {
                 .foregroundColor(Color("appPink"))
             
             HStack (spacing: 30) {
-                Image("recurso4")
+                Image("recurso4") // Instagram
                     .resizable()
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
                     .onTapGesture {
+                        selectedSocialMediatoShow = .instagram
                         isShowingQR.toggle()
                     }
+                
                 Image("recurso4")
-                    .resizable()
+                    .resizable() // Twitter
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
                     .onTapGesture {
+                        selectedSocialMediatoShow = .twitter
                         isShowingQR.toggle()
                     }
+                
                 Image("recurso4")
-                    .resizable()
+                    .resizable() // Facebook
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
                     .onTapGesture {
+                        selectedSocialMediatoShow = .facebook
                         isShowingQR.toggle()
                     }
             }
             .padding(.bottom)
         }
-    } //Chequear que iconos de redes mostrar
+    } //Cambiar iconos y animarlos
     
     var socialQRShow: some View {
         ZStack {
@@ -136,10 +142,14 @@ struct ContentView: View {
             RoundedRectangle(cornerRadius: 25)
                 .frame(width: 320, height: 320)
                 .foregroundColor(.white)
-            SocialQRCodeView(social: .instagram, userData: userData)
+            switch selectedSocialMediatoShow {
+            case .facebook: SocialQRCodeView(social: .facebook, handle: userData.facebook)
+            case .instagram: SocialQRCodeView(social: .instagram, handle: userData.instragram)
+            case .twitter: SocialQRCodeView(social: .twitter, handle: userData.twitter)
+            }
         }
         .ignoresSafeArea()
-    } //Modificar como llamar al qr de redes
+    }
     
     var tabView: some View {
         TabView {
@@ -189,7 +199,7 @@ struct ContentView: View {
             .padding()
             .foregroundColor(.white)
         }
-    }
+    } //Modificar fuentes
 }
 
 struct ContentView_Previews: PreviewProvider {

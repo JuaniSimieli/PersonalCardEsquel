@@ -12,7 +12,6 @@
 		6B18BDAC2A3521A900B7E272 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B18BDAB2A3521A900B7E272 /* Assets.xcassets */; };
 		6B18BDAF2A3521A900B7E272 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B18BDAE2A3521A900B7E272 /* Preview Assets.xcassets */; };
 		6B18BDBA2A35484300B7E272 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18BDB92A35484300B7E272 /* QRCodeView.swift */; };
-		6B18BDBE2A357E0100B7E272 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18BDBD2A357E0100B7E272 /* SwiftUIView.swift */; };
 		6B18BDC02A366A9200B7E272 /* EditDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18BDBF2A366A9200B7E272 /* EditDataView.swift */; };
 		6BB4A52C2A38FB9C008943C3 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4A52B2A38FB9C008943C3 /* UserData.swift */; };
 /* End PBXBuildFile section */
@@ -24,7 +23,6 @@
 		6B18BDAB2A3521A900B7E272 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B18BDAE2A3521A900B7E272 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6B18BDB92A35484300B7E272 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
-		6B18BDBD2A357E0100B7E272 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		6B18BDBF2A366A9200B7E272 /* EditDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataView.swift; sourceTree = "<group>"; };
 		6BB4A52B2A38FB9C008943C3 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,7 +62,6 @@
 				6B18BDB92A35484300B7E272 /* QRCodeView.swift */,
 				6BB4A52B2A38FB9C008943C3 /* UserData.swift */,
 				6B18BDBF2A366A9200B7E272 /* EditDataView.swift */,
-				6B18BDBD2A357E0100B7E272 /* SwiftUIView.swift */,
 				6B18BDAB2A3521A900B7E272 /* Assets.xcassets */,
 				6B18BDAD2A3521A900B7E272 /* Preview Content */,
 			);
@@ -155,7 +152,6 @@
 				6BB4A52C2A38FB9C008943C3 /* UserData.swift in Sources */,
 				6B18BDC02A366A9200B7E272 /* EditDataView.swift in Sources */,
 				6B18BDA82A3521A700B7E272 /* PersonalCardEsquelApp.swift in Sources */,
-				6B18BDBE2A357E0100B7E272 /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

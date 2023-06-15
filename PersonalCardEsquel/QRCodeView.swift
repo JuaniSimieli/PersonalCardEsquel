@@ -8,15 +8,13 @@
 import SwiftUI
 import CoreImage.CIFilterBuiltins
 
+enum SocialMediaType {
+    case instagram, facebook, twitter
+}
+
 struct SocialQRCodeView: View {
-    enum Social {
-        case instagram
-        case facebook
-        case twitter
-    }
-    
-    let social: Social
-    let userData: UserData
+    let social: SocialMediaType
+    let handle: String
     
     var body: some View {
         Image(uiImage: socialQR())
@@ -30,11 +28,11 @@ struct SocialQRCodeView: View {
         
         switch social {
         case .instagram:
-            username = "instagram://user?username=\(userData.instragram ?? "")"
+            username = "instagram://user?username=\(handle)"
         case .facebook:
-            username = "fb://profile/\(userData.facebook ?? "")"
+            username = "fb://profile/\(handle)"
         case .twitter:
-            username = "twitter://user?screen_name=\(userData.twitter ?? "")"
+            username = "twitter://user?screen_name=\(handle)"
         }
         
         let data = username.data(using: .utf8)
@@ -70,7 +68,7 @@ struct ContactQRCodeView: View {
         N:\(contactData.lastName);\(contactData.firstName)
         FN:\(contactData.firstName) \(contactData.lastName)
         TEL;TYPE=CELL:\(contactData.phone1)
-        TEL;TYPE=HOME:\(contactData.phone2)
+        TEL;TYPE=WORK:\(contactData.phone2)
         EMAIL:\(contactData.email)
         URL:\(contactData.url)
         ADR:\(contactData.address)
@@ -90,5 +88,10 @@ struct ContactQRCodeView: View {
         }
 
         return UIImage(systemName: "xmark.circle") ?? UIImage()
+    }
+    
+    init(firstName: String, lastName: String, phone: String, email: String) {
+        let newUser = UserData(firstName: firstName, lastName: lastName, position: "", email: email, phone1: phone)
+        self.userData = newUser
     }
 }

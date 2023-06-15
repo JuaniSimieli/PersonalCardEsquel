@@ -10,40 +10,32 @@ import SwiftUI
 struct EditDataView: View {
     @Environment(\.dismiss) var dismiss
     @FocusState private var isFocusedField: Bool
-    
-    @State private var firstName = ""
-    @State private var lastName = ""
-    @State private var position = ""
-    @State private var email = ""
-    @State private var phone = ""
-    @State private var instagram = ""
-    @State private var facebook = ""
-    @State private var twitter = ""
+    @ObservedObject var userData: UserData
     
     var body: some View {
         NavigationView {
             Form {
-                Section("Datos personales") {
-                    TextField("Nombre", text: $firstName)
+                Section("Datos Personales") {
+                    TextField("Nombre", text: $userData.firstName)
                         .focused($isFocusedField)
-                    TextField("Apellido", text: $lastName)
+                    TextField("Apellido", text: $userData.lastName)
                         .focused($isFocusedField)
-                    TextField("Puesto", text: $position)
+                    TextField("Puesto", text: $userData.position)
                         .focused($isFocusedField)
-                    TextField("Email", text: $email)
+                    TextField("Email", text: $userData.email)
                         .keyboardType(.emailAddress)
                         .focused($isFocusedField)
-                    TextField("Telefono personal", text: $phone)
+                    TextField("Telefono personal", text: $userData.phone1)
                         .focused($isFocusedField)
                         .keyboardType(.phonePad)
                 }
                 
                 Section {
-                    TextField("Instagram", text: $instagram)
+                    TextField("Instagram", text: $userData.instragram)
                         .focused($isFocusedField)
-                    TextField("Facebook", text: $facebook)
+                    TextField("Facebook", text: $userData.facebook)
                         .focused($isFocusedField)
-                    TextField("Twitter", text: $twitter)
+                    TextField("Twitter", text: $userData.twitter)
                         .focused($isFocusedField)
                 } header: {
                     Text("Redes Sociales")
@@ -59,7 +51,6 @@ struct EditDataView: View {
             .toolbar {
                 Button("Guardar") {
                     dismiss()
-                    //validar datos
                 }
             }
             .onTapGesture {
@@ -67,10 +58,12 @@ struct EditDataView: View {
             }
         }
     }
+    
+    init(_ userData: UserData) { self.userData = userData }
 }
 
 struct EditDataView_Previews: PreviewProvider {
     static var previews: some View {
-        EditDataView()
+        EditDataView(UserData.defaultUser)
     }
 }
