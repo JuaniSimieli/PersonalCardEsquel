@@ -8,49 +8,99 @@
 import SwiftUI
 
 struct EditDataView: View {
-    @Environment(\.dismiss) var dismiss
     @FocusState private var isFocusedField: Bool
     @ObservedObject var userData: UserData
+    @State private var isEditingDisabled = true
     
     var body: some View {
         NavigationView {
             Form {
-                Section("Datos Personales") {
-                    TextField("Nombre", text: $userData.firstName)
-                        .focused($isFocusedField)
-                    TextField("Apellido", text: $userData.lastName)
-                        .focused($isFocusedField)
-                    TextField("Puesto", text: $userData.position)
-                        .focused($isFocusedField)
-                    TextField("Email", text: $userData.email)
-                        .keyboardType(.emailAddress)
-                        .focused($isFocusedField)
-                    TextField("Telefono personal", text: $userData.phone1)
-                        .focused($isFocusedField)
-                        .keyboardType(.phonePad)
+                Section {
+                    HStack {
+                        Text("Nombre")
+                        TextField("Nombre", text: $userData.firstName)
+                            .focused($isFocusedField)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Apellido")
+                        TextField("Apellido", text: $userData.lastName)
+                            .focused($isFocusedField)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Puesto")
+                        TextField("Puesto", text: $userData.position)
+                            .focused($isFocusedField)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Email")
+                        TextField("Email", text: $userData.email)
+                            .keyboardType(.emailAddress)
+                            .focused($isFocusedField)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Teléfono Personal")
+                        TextField("Teléfono Personal", text: $userData.phone1)
+                            .focused($isFocusedField)
+                            .keyboardType(.phonePad)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                } header: {
+                    Text("Datos Personales")
+                } footer: {
+                    Text("Estos datos van a ser utilizados para mostrar en la pantalla principal y para actualizar el código QR para compartir tu contacto")
                 }
+                .disabled(isEditingDisabled)
                 
                 Section {
-                    TextField("Instagram", text: $userData.instragram)
-                        .focused($isFocusedField)
-                    TextField("Facebook", text: $userData.facebook)
-                        .focused($isFocusedField)
-                    TextField("Twitter", text: $userData.twitter)
-                        .focused($isFocusedField)
+                    HStack {
+                        Text("Instagram")
+                        TextField("Instagram", text: $userData.instragram)
+                            .focused($isFocusedField)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack {
+                        Text("Twitter")
+                        TextField("Twitter", text: $userData.twitter)
+                            .focused($isFocusedField)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
+                    HStack (spacing: 4) {
+                        Text("Facebook")
+                        Image(systemName: "questionmark.circle")
+                            .font(.footnote)
+                            .foregroundColor(.blue)
+                            .onTapGesture {
+                                // Facebook ID Help
+                            }
+                        TextField("Facebook", text: $userData.facebook)
+                            .focused($isFocusedField)
+                            .foregroundColor(isEditingDisabled ? .gray : .blue)
+                            .multilineTextAlignment(.trailing)
+                    }
                 } header: {
                     Text("Redes Sociales")
                 } footer: {
-                    Text("No inlcluyas arrobas")
+                    Text("Si no modificas las redes sociales, se mostrarán por defecto las de Turismo Esquel. \nPara Instagram y Twitter poné tu nombre de usuario sin el arroba. \nPara Facebook necesitas tu identificador de página, si no sabés como obtenerlo, hacé click en el ícono azul.")
                 }
                 .textInputAutocapitalization(.never)
                 .submitLabel(.done)
+                .disabled(isEditingDisabled)
             }
             .autocorrectionDisabled()
-            .navigationTitle("Datos")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                Button("Guardar") {
-                    dismiss()
+                Button(isEditingDisabled ? "Editar" : "Aceptar") {
+                    isEditingDisabled.toggle()
                 }
             }
             .onTapGesture {

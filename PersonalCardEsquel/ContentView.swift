@@ -42,7 +42,6 @@ struct ContentView: View {
         }
         .sheet(isPresented: $isShowingSheet) {
             EditDataView(userData)
-                .interactiveDismissDisabled()
         }
     }
     
