@@ -12,7 +12,7 @@ import CoreImage.CIFilterBuiltins
 struct ContentView: View {
     @State private var isShowingQR = false
     @State private var isShowingSheet = false
-    @StateObject var userData = UserData.defaultUser
+    @StateObject var userData: UserData = UserDefaults.standard.retrieveCustomObject(key: "SavedUserData") ?? UserData.defaultUser
     @State private var selectedSocialMediatoShow: SocialMediaType = .twitter
     @State private var iconScale = 1.0
     @State private var rotationAngle = 0.0
@@ -43,8 +43,13 @@ struct ContentView: View {
                 socialQRShow
             }
         }
-        .sheet(isPresented: $isShowingSheet) {
+        .sheet(isPresented: $isShowingSheet, onDismiss: saveUser) {
             EditDataView(for: userData)
+        }
+        .onAppear {
+            if let savedImage = loadImage() {
+                userData.image = savedImage
+            }
         }
     }
     
@@ -245,6 +250,27 @@ struct ContentView: View {
             .padding()
             .foregroundColor(.white)
         }
+    }
+    
+    func saveUser() {
+        UserDefaults.standard.saveCustomObject(customObject: userData, key: "SavedUserData")
+    }
+    
+    func loadImage() -> Image? {
+        let fileManager = FileManager.default
+        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentDirectory.appendingPathComponent("userImage.jpg")
+        
+        do {
+            let data = try Data(contentsOf: filePath)
+            if let uiImage = UIImage(data: data) {
+                return Image(uiImage: uiImage)
+            }
+        } catch {
+            print("Error cargando imagen: \(error)")
+        }
+        
+        return nil
     }
 }
 

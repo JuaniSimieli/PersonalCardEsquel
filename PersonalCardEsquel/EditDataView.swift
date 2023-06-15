@@ -142,12 +142,27 @@ struct EditDataView: View {
             .onChange(of: profilePhoto) { newImage in
                 if let newImage = newImage {
                     userData.image = Image(uiImage: newImage)
+                    saveImage(image: newImage)
                 }
             }
         }
     }
     
     init(for userData: UserData) { self.userData = userData }
+    
+    func saveImage(image: UIImage) {
+        let fileManager = FileManager.default
+        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentDirectory.appendingPathComponent("userImage.jpg")
+        
+        do {
+            if let data = image.jpegData(compressionQuality: 1.0) {
+                try data.write(to: filePath)
+            }
+        } catch {
+            print("Error guardando imagen: \(error)")
+        }
+    }
 }
 
 struct EditDataView_Previews: PreviewProvider {
