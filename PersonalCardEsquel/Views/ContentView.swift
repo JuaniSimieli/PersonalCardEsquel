@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import CoreImage.CIFilterBuiltins
-
 
 struct ContentView: View {
     @State private var isShowingQR = false
