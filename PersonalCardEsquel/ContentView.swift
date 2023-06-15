@@ -40,11 +40,11 @@ struct ContentView: View {
                 }
             }
             if isShowingQR {
-                socialQRShow //Cambiar esto por una animacion como la gente
+                socialQRShow
             }
         }
         .sheet(isPresented: $isShowingSheet) {
-            EditDataView(userData)
+            EditDataView(for: userData)
         }
     }
     
@@ -60,7 +60,7 @@ struct ContentView: View {
     }
     
     var appImage: some View {
-        Image(systemName: "person.circle.fill") //chequear foto personal
+        userData.image
             .resizable()
             .clipShape(Circle())
             .overlay(
@@ -70,16 +70,16 @@ struct ContentView: View {
             .frame(width: 200, height: 200)
             .scaledToFit()
             .foregroundColor(Color("appPink"))
-    } //Cambiar foto perfil
+    }
     
     var appStrings: some View {
         VStack {
             Text(userData.fullName)
-                .font(.custom("Montserrat-Bold", size: 22))
+                .font(.custom("Montserrat-SemiBold", size: 24))
             Text(userData.position)
                 .font(.custom("Montserrat", size: 18))
             Text(userData.email)
-                .font(.custom("Montserrat", size: 16))
+                .font(.custom("Montserrat-SemiBold", size: 16))
         }
         .padding()
         .foregroundColor(Color("appPink"))
@@ -120,14 +120,14 @@ struct ContentView: View {
                             .padding(.bottom, -15)
                             .padding(.top, -20)
                             .rotationEffect(Angle(degrees: rotationAngle), anchor: .bottomLeading)
-                            .animation(.easeInOut(duration: 1.0).repeatForever(), value: rotationAngle)
+                            .animation(.easeInOut(duration: 0.7).repeatForever(), value: rotationAngle)
                     }
                 }
             }
         }
         .padding()
         .onAppear {
-            rotationAngle = 8.0
+            rotationAngle = 5.0
         }
     }
     
@@ -219,7 +219,7 @@ struct ContentView: View {
                 .stroke(Color("appPink"), lineWidth: 2)
         )
         .padding()
-    } //Usa fotos predeterminadas, hacer dinamico
+    }
     
     var turismoData: some View {
         ZStack (alignment: .top) {
