@@ -94,7 +94,7 @@ struct ContentView: View {
     
     var contactCard: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 3)
                 .fill(Color("appPink"))
             VStack {
                 ContactQRCodeView(firstName: userData.firstName, lastName: userData.lastName, phone: userData.phone1, email1: userData.email1, email2: userData.email2)
@@ -220,9 +220,9 @@ struct ContentView: View {
         }
         .tabViewStyle(PageTabViewStyle())
         .frame(height: 400)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .clipShape(RoundedRectangle(cornerRadius: 3))
         .overlay(
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 3)
                 .stroke(Color("appPink"), lineWidth: 2)
         )
         .padding()
