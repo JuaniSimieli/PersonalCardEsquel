@@ -179,7 +179,7 @@ struct ContentView: View {
             .padding(.bottom)
             .onAppear {
                 withAnimation(.easeInOut(duration: 0.75).repeatForever()) {
-                    iconScale = 1.1
+//                    iconScale = 1.1
                 }
             }
         }
@@ -195,9 +195,9 @@ struct ContentView: View {
                 .frame(width: 320, height: 320)
                 .foregroundColor(.white)
             switch selectedSocialMediatoShow {
-            case .facebook: SocialQRCodeView(social: .facebook, handle: userData.facebook)
-            case .instagram: SocialQRCodeView(social: .instagram, handle: userData.instragram)
-            case .twitter: SocialQRCodeView(social: .twitter, handle: userData.twitter)
+            case .facebook: SocialQRCodeView(social: .facebook, handle: "100064319754293") //Default FB Handle Turismo Esquel
+            case .instagram: SocialQRCodeView(social: .instagram, handle: "turismoesquelok")
+            case .twitter: SocialQRCodeView(social: .twitter, handle: "TurismoEsquel")
             }
         }
         .ignoresSafeArea()

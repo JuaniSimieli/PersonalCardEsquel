@@ -16,9 +16,6 @@ class UserData: ObservableObject, Codable {
     @Published var email2: String
     @Published var phone1: String
     @Published var phone2: String
-    @Published var instragram: String = "turismoesquelok"
-    @Published var facebook: String = "100064319754293" // Turismo Esquel
-    @Published var twitter: String = "TurismoEsquel"
     
     @Published var image: Image = Image(systemName: "person.circle.fill")
     
@@ -40,7 +37,7 @@ class UserData: ObservableObject, Codable {
     static let defaultUser = UserData(firstName: "Juan", lastName: "Perez", position: "Secretario", email1: "juanperez@esquel.gov.ar", phone1: "+5492945000000")
     
     enum CodingKeys: CodingKey {
-            case firstName, lastName, position, email1, email2, phone1, phone2, instragram, facebook, twitter
+            case firstName, lastName, position, email1, email2, phone1, phone2
         }
     
     required init(from decoder: Decoder) throws {
@@ -52,9 +49,6 @@ class UserData: ObservableObject, Codable {
         email2 = try container.decode(String.self, forKey: .email2)
         phone1 = try container.decode(String.self, forKey: .phone1)
         phone2 = try container.decode(String.self, forKey: .phone2)
-        instragram = try container.decode(String.self, forKey: .instragram)
-        facebook = try container.decode(String.self, forKey: .facebook)
-        twitter = try container.decode(String.self, forKey: .twitter)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -66,8 +60,5 @@ class UserData: ObservableObject, Codable {
         try container.encode(email2, forKey: .email2)
         try container.encode(phone1, forKey: .phone1)
         try container.encode(phone2, forKey: .phone2)
-        try container.encode(instragram, forKey: .instragram)
-        try container.encode(facebook, forKey: .facebook)
-        try container.encode(twitter, forKey: .twitter)
     }
 }
