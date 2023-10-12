@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var selectedSocialMediatoShow: SocialMediaType = .twitter
     @State private var iconScale = 1.0
     @State private var rotationAngle = 0.0
+    @State private var isFirstTimeRunningApp = false
     
     var body: some View {
         ZStack {
@@ -44,13 +45,44 @@ struct ContentView: View {
         .sheet(isPresented: $isShowingSheet, onDismiss: saveUser) {
             EditDataView(for: userData)
         }
+        .sheet(isPresented: $isFirstTimeRunningApp) {
+            InitialSetupView(isPresented: $isFirstTimeRunningApp, userData: userData)
+                .interactiveDismissDisabled(true)
+        }
         .onAppear {
+//            resetAppData()
             if let savedImage = loadImage() {
                 userData.image = savedImage
             }
+            if userData.firstName == UserData.defaultUser.firstName &&
+                userData.lastName == UserData.defaultUser.lastName &&
+                userData.position == UserData.defaultUser.position &&
+                userData.email1 == UserData.defaultUser.email1 &&
+                userData.phone1 == UserData.defaultUser.phone1 {
+                isFirstTimeRunningApp = true
+            }
         }
     }
-    
+
+    func resetAppData() {
+        let userDefaults = UserDefaults.standard
+        let keys = ["firstName", "lastName", "position", "email1", "email2", "phone1", "phone2"]
+
+        for key in keys {
+            userDefaults.removeObject(forKey: key)
+        }
+        
+        let fileManager = FileManager.default
+        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentDirectory.appendingPathComponent("userImage.jpg")
+
+        do {
+            try fileManager.removeItem(at: filePath)
+        } catch {
+            print("Error eliminando imagen: \(error)")
+        }
+    }
+        
     var colors: some View {
         VStack(spacing: 0) {
             Color.white

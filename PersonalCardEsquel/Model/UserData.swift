@@ -16,9 +16,7 @@ class UserData: ObservableObject, Codable {
     @Published var email2: String
     @Published var phone1: String
     @Published var phone2: String
-    
     @Published var image: Image = Image(systemName: "person.circle.fill")
-    
     
     var fullName: String {
         firstName + " " + lastName

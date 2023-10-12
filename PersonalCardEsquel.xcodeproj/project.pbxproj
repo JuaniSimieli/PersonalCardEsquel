@@ -14,6 +14,13 @@
 		6B18BDBA2A35484300B7E272 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18BDB92A35484300B7E272 /* QRCodeView.swift */; };
 		6B18BDC02A366A9200B7E272 /* EditDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B18BDBF2A366A9200B7E272 /* EditDataView.swift */; };
 		6BB4A52C2A38FB9C008943C3 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB4A52B2A38FB9C008943C3 /* UserData.swift */; };
+		6BB562332AD715DD00EAC678 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB562322AD715DD00EAC678 /* InitialSetupView.swift */; };
+		6BB562352AD7423A00EAC678 /* TemporaryUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB562342AD7423A00EAC678 /* TemporaryUser.swift */; };
+		6BB562372AD742A100EAC678 /* BasicInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB562362AD742A100EAC678 /* BasicInfoView.swift */; };
+		6BB562392AD742DE00EAC678 /* ContactMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB562382AD742DE00EAC678 /* ContactMainView.swift */; };
+		6BB5623B2AD742FF00EAC678 /* ContactOptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB5623A2AD742FF00EAC678 /* ContactOptionalView.swift */; };
+		6BB5623D2AD7431E00EAC678 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB5623C2AD7431E00EAC678 /* SummaryView.swift */; };
+		6BB562412AD782B700EAC678 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB562402AD782B700EAC678 /* ImagePickerView.swift */; };
 		6BCB57DE2A3ADBDE007530E2 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB57DD2A3ADBDE007530E2 /* ImagePicker.swift */; };
 		6BCB57E02A3B6105007530E2 /* Montserrat.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB57DF2A3B6105007530E2 /* Montserrat.ttf */; };
 		6BCB57E32A3B6365007530E2 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB57E22A3B6364007530E2 /* Montserrat-Bold.ttf */; };
@@ -31,6 +38,13 @@
 		6B18BDB92A35484300B7E272 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		6B18BDBF2A366A9200B7E272 /* EditDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDataView.swift; sourceTree = "<group>"; };
 		6BB4A52B2A38FB9C008943C3 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		6BB562322AD715DD00EAC678 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
+		6BB562342AD7423A00EAC678 /* TemporaryUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryUser.swift; sourceTree = "<group>"; };
+		6BB562362AD742A100EAC678 /* BasicInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoView.swift; sourceTree = "<group>"; };
+		6BB562382AD742DE00EAC678 /* ContactMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactMainView.swift; sourceTree = "<group>"; };
+		6BB5623A2AD742FF00EAC678 /* ContactOptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactOptionalView.swift; sourceTree = "<group>"; };
+		6BB5623C2AD7431E00EAC678 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		6BB562402AD782B700EAC678 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		6BCB57DD2A3ADBDE007530E2 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6BCB57DF2A3B6105007530E2 /* Montserrat.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Montserrat.ttf; sourceTree = "<group>"; };
 		6BCB57E12A3B6129007530E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -105,6 +119,12 @@
 			children = (
 				6B18BDA92A3521A700B7E272 /* ContentView.swift */,
 				6B18BDBF2A366A9200B7E272 /* EditDataView.swift */,
+				6BB562322AD715DD00EAC678 /* InitialSetupView.swift */,
+				6BB562362AD742A100EAC678 /* BasicInfoView.swift */,
+				6BB562382AD742DE00EAC678 /* ContactMainView.swift */,
+				6BB5623A2AD742FF00EAC678 /* ContactOptionalView.swift */,
+				6BB562402AD782B700EAC678 /* ImagePickerView.swift */,
+				6BB5623C2AD7431E00EAC678 /* SummaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				6BB4A52B2A38FB9C008943C3 /* UserData.swift */,
+				6BB562342AD7423A00EAC678 /* TemporaryUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,13 +223,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BB5623D2AD7431E00EAC678 /* SummaryView.swift in Sources */,
 				6B18BDAA2A3521A700B7E272 /* ContentView.swift in Sources */,
+				6BB562352AD7423A00EAC678 /* TemporaryUser.swift in Sources */,
 				6B18BDBA2A35484300B7E272 /* QRCodeView.swift in Sources */,
+				6BB562412AD782B700EAC678 /* ImagePickerView.swift in Sources */,
+				6BB562372AD742A100EAC678 /* BasicInfoView.swift in Sources */,
+				6BB562392AD742DE00EAC678 /* ContactMainView.swift in Sources */,
+				6BB5623B2AD742FF00EAC678 /* ContactOptionalView.swift in Sources */,
 				6BB4A52C2A38FB9C008943C3 /* UserData.swift in Sources */,
 				6BCB57EB2A3BBD51007530E2 /* UserDefaultsExtension.swift in Sources */,
 				6BCB57DE2A3ADBDE007530E2 /* ImagePicker.swift in Sources */,
 				6B18BDC02A366A9200B7E272 /* EditDataView.swift in Sources */,
 				6B18BDA82A3521A700B7E272 /* PersonalCardEsquelApp.swift in Sources */,
+				6BB562332AD715DD00EAC678 /* InitialSetupView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
