@@ -16,13 +16,14 @@ struct SummaryView: View {
         ZStack {
             Color("appPink").ignoresSafeArea(.all)
             VStack(spacing: 20) {
-                Text("Todo listo, \(tempUser.firstName.uppercased())")
+                Text("Todo listo, \(tempUser.firstName.uppercased()).")
                     .font(.custom("Montserrat-SemiBold", size: 24))
                     .foregroundColor(Color.white)
-                Text("Podras cambiar tus datos en la configuración mas tarde si lo deseas.")
+                Text("Podras cambiar tus datos en la configuración mas tarde si lo deseas, solo busca el icono de configuración al final de la pantalla: \(Image(systemName: "gear")).")
                     .multilineTextAlignment(.center)
                     .font(.custom("Montserrat", size: 16))
                     .foregroundColor(Color.white)
+                    .padding()
                 
                 Button("Finalizar") {
                     userData.firstName = tempUser.firstName
@@ -62,4 +63,8 @@ struct SummaryView: View {
             print("Error guardando imagen: \(error)")
         }
     }
+}
+
+#Preview {
+    SummaryView(isPresented: .constant(true), tempUser: TemporaryUser(), userData: UserData.defaultUser)
 }

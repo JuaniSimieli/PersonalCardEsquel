@@ -38,12 +38,12 @@ struct ContentView: View {
                     }
                 }
             }
-            if isShowingQR {
-                socialQRShow
-            }
         }
         .sheet(isPresented: $isShowingSheet, onDismiss: saveUser) {
             EditDataView(for: userData)
+        }
+        .sheet(isPresented: $isShowingQR) {
+            QRCodeView(selectedSocialMediatoShow: selectedSocialMediatoShow)
         }
         .sheet(isPresented: $isFirstTimeRunningApp) {
             InitialSetupView(isPresented: $isFirstTimeRunningApp, userData: userData)
@@ -178,7 +178,7 @@ struct ContentView: View {
                 .font(.custom("Montserrat-SemiBold", size: 18))
             
             HStack (spacing: 30) {
-                Image("instagram.icon") // Instagram
+                Image("Instagram.icon") // Instagram
                     .resizable()
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
@@ -188,7 +188,7 @@ struct ContentView: View {
                     }
                     .scaleEffect(iconScale)
                 
-                Image("twitter.icon") // Twitter
+                Image("Twitter.icon") // Twitter
                     .resizable()
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
@@ -198,7 +198,7 @@ struct ContentView: View {
                     }
                     .scaleEffect(iconScale)
                 
-                Image("facebook.icon") // Facebook
+                Image("Facebook.icon") // Facebook
                     .resizable()
                     .frame(width: 75, height: 75)
                     .clipShape(Circle())
@@ -215,24 +215,6 @@ struct ContentView: View {
                 }
             }
         }
-    }
-    
-    var socialQRShow: some View {
-        ZStack {
-            Color(red: 0.04, green: 0.04, blue: 0.04, opacity: 0.70)
-                .onTapGesture {
-                    isShowingQR.toggle()
-                }
-            RoundedRectangle(cornerRadius: 25)
-                .frame(width: 320, height: 320)
-                .foregroundColor(.white)
-            switch selectedSocialMediatoShow {
-            case .facebook: SocialQRCodeView(social: .facebook, handle: "100064319754293") //Default FB Handle Turismo Esquel
-            case .instagram: SocialQRCodeView(social: .instagram, handle: "turismoesquelok")
-            case .twitter: SocialQRCodeView(social: .twitter, handle: "TurismoEsquel")
-            }
-        }
-        .ignoresSafeArea()
     }
     
     var tabView: some View {
