@@ -51,7 +51,6 @@ struct ContentView: View {
                 .interactiveDismissDisabled(true)
         }
         .onAppear {
-//            resetAppData()
             if let savedImage = loadImage() {
                 userData.image = savedImage
             }
@@ -62,25 +61,6 @@ struct ContentView: View {
                 userData.phone1 == UserData.defaultUser.phone1 {
                 isFirstTimeRunningApp = true
             }
-        }
-    }
-
-    func resetAppData() {
-        let userDefaults = UserDefaults.standard
-        let keys = ["firstName", "lastName", "position", "email1", "email2", "phone1", "phone2"]
-
-        for key in keys {
-            userDefaults.removeObject(forKey: key)
-        }
-        
-        let fileManager = FileManager.default
-        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let filePath = documentDirectory.appendingPathComponent("userImage.jpg")
-
-        do {
-            try fileManager.removeItem(at: filePath)
-        } catch {
-            print("Error eliminando imagen: \(error)")
         }
     }
         

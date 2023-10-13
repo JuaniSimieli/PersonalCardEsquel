@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Darwin
 
 struct EditDataView: View {
     @FocusState private var isFocusedField: Bool
@@ -18,6 +19,7 @@ struct EditDataView: View {
     @EnvironmentObject var userImages: UserImages
     @State private var showAlert = false
     @State private var isUsingCustomImages: Bool = false
+    @State private var isShowingResetDataAlert = false
     
     var body: some View {
         NavigationView {
@@ -111,24 +113,36 @@ struct EditDataView: View {
                 .textInputAutocapitalization(.never)
                 .submitLabel(.done)
                 
-                Toggle("Usar Imagenes Personalizadas", isOn: $isUsingCustomImages)
-                    .onChange(of: isUsingCustomImages) { value in
-                        if !value {
-                            showAlert = true
-                        } else if userImages.customImages.isEmpty {
+                Section {
+                    Toggle("Usar Imagenes Personalizadas", isOn: $isUsingCustomImages)
+                        .onChange(of: isUsingCustomImages) { value in
+                            if !value {
+                                showAlert = true
+                            } else if userImages.customImages.isEmpty {
+                                isShowingImagePicker.toggle()
+                            }
+                        }
+                    if isUsingCustomImages {
+                        Button("Agregar / Modificar Imagenes") {
+                            //                    check .onTapGesture()
+                        }
+                        .padding()
+                        .background(Color.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .foregroundColor(.white)
+                        .onTapGesture {
                             isShowingImagePicker.toggle()
                         }
                     }
-                if isUsingCustomImages {
-                    Button("Agregar / Modificar Imagenes") {
-                        //                    check .onTapGesture()
+                }
+                
+                Section {
+                    Button("Eliminar Datos") {
+                        // check .onTapGesture()
                     }
-                    .padding()
-                    .background(Color.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                    .foregroundColor(.white)
+                    .foregroundColor(.red)
                     .onTapGesture {
-                        isShowingImagePicker.toggle()
+                        isShowingResetDataAlert.toggle()
                     }
                 }
             }
@@ -170,6 +184,14 @@ struct EditDataView: View {
                 },
                       secondaryButton: .cancel() {isUsingCustomImages = true})
             }
+            .alert(isPresented: $isShowingResetDataAlert) {
+                Alert(title: Text("Eliminar Datos"),
+                      message: Text("¿Estás seguro de que quieres eliminar todos tus datos personales? Esto cerrará la app."),
+                      primaryButton: .destructive(Text("Eliminar")) {
+                    resetAppData()
+                },
+                      secondaryButton: .cancel() {isUsingCustomImages = true})
+            }
         }
     }
     
@@ -188,6 +210,38 @@ struct EditDataView: View {
             print("Error guardando imagen: \(error)")
         }
     }
+    
+    func resetAppData() {
+        let userDefaults = UserDefaults.standard
+        let keys = ["firstName", "lastName", "position", "email1", "email2", "phone1", "phone2"]
+
+        for key in keys {
+            userDefaults.removeObject(forKey: key)
+            print("Eliminado \(key): \(userDefaults.object(forKey: key) == nil)")
+        }
+
+        
+        let fileManager = FileManager.default
+        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentDirectory.appendingPathComponent("userImage.jpg")
+
+        do {
+            try fileManager.removeItem(at: filePath)
+        } catch {
+            print("Error eliminando imagen: \(error)")
+        }
+        
+        userData.firstName = "Juan"
+        userData.lastName = "Perez"
+        userData.position = "Secretario"
+        userData.email1 = "juanperez@esquel.gov.ar"
+        userData.phone1 = "+5492945000000"
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                exit(0)
+        }
+    }
+
 }
 
 struct EditDataView_Previews: PreviewProvider {
