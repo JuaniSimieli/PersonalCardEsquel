@@ -13,6 +13,11 @@ struct EditDataView: View {
     @State private var isEditingDisabled = true
     @State private var profilePhoto: UIImage?
     @State private var showImagePicker = false
+    @State private var multipleImages: [UIImage] = []
+    @State private var isShowingImagePicker: Bool = false
+    @EnvironmentObject var userImages: UserImages
+    @State private var showAlert = false
+    @State private var isUsingCustomImages: Bool = false
     
     var body: some View {
         NavigationView {
@@ -100,11 +105,32 @@ struct EditDataView: View {
                 } header: {
                     Text("Datos Personales")
                 } footer: {
-                    Text("Estos datos van a ser utilizados para mostrar en la pantalla principal y para actualizar el código QR para compartir tu contacto. \nEl email alternativo es opcional \nEn el teléfono secundario se muestra por defecto el número de la secretaría.")
+                    Text("El email alternativo es opcional \nEn el teléfono secundario se muestra por defecto el número de la secretaría.")
                 }
                 .disabled(isEditingDisabled)
                 .textInputAutocapitalization(.never)
                 .submitLabel(.done)
+                
+                Toggle("Usar Imagenes Personalizadas", isOn: $isUsingCustomImages)
+                    .onChange(of: isUsingCustomImages) { value in
+                        if !value {
+                            showAlert = true
+                        } else if userImages.customImages.isEmpty {
+                            isShowingImagePicker.toggle()
+                        }
+                    }
+                if isUsingCustomImages {
+                    Button("Agregar / Modificar Imagenes") {
+                        //                    check .onTapGesture()
+                    }
+                    .padding()
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .foregroundColor(.white)
+                    .onTapGesture {
+                        isShowingImagePicker.toggle()
+                    }
+                }
             }
             .autocorrectionDisabled()
             .toolbar {
@@ -121,11 +147,28 @@ struct EditDataView: View {
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(image: $profilePhoto)
             }
+            .sheet(isPresented: $isShowingImagePicker) {
+                MultiImagePickerView(currentImages: userImages.customImages)
+                    .environmentObject(userImages)
+            }
             .onChange(of: profilePhoto) { newImage in
                 if let newImage = newImage {
                     userData.image = Image(uiImage: newImage)
                     saveImage(image: newImage)
                 }
+            }
+            .onAppear {
+                // Asigna el valor basado en si hay imágenes customizadas al aparecer la vista
+                isUsingCustomImages = !userImages.customImages.isEmpty
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Eliminar Imágenes"),
+                      message: Text("¿Estás seguro de que quieres eliminar todas las fotos personalizadas de la app?"),
+                      primaryButton: .destructive(Text("Eliminar")) {
+                    userImages.customImages.removeAll()
+                    isUsingCustomImages = false
+                },
+                      secondaryButton: .cancel() {isUsingCustomImages = true})
             }
         }
     }

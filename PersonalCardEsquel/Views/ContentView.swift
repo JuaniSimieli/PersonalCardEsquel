@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var iconScale = 1.0
     @State private var rotationAngle = 0.0
     @State private var isFirstTimeRunningApp = false
+    @EnvironmentObject var userImages: UserImages
     
     var body: some View {
         ZStack {
@@ -219,18 +220,27 @@ struct ContentView: View {
     
     var tabView: some View {
         TabView {
-            Image("galeria002")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .tag(1)
-            Image("galeria003")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .tag(2)
-            Image("galeria004")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .tag(3)
+            if userImages.customImages.isEmpty {
+                Image("galeria002")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .tag(1)
+                Image("galeria003")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .tag(2)
+                Image("galeria004")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .tag(3)
+            } else {
+                ForEach(userImages.customImages.indices, id: \.self) { index in
+                    Image(uiImage: userImages.customImages[index])
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .tag(index)
+                }
+            }
         }
         .tabViewStyle(PageTabViewStyle())
         .frame(height: 400)

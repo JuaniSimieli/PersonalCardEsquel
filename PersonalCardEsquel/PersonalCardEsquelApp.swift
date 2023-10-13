@@ -9,10 +9,13 @@ import SwiftUI
 
 @main
 struct PersonalCardEsquelApp: App {
+    @StateObject private var userImages = UserImages()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .preferredColorScheme(.light)
+                .environmentObject(userImages)
         }
     }
 }
